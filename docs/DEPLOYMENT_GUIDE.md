@@ -476,6 +476,53 @@ ANALYZE=true npm run build
 # Use Lighthouse in Chrome DevTools
 ```
 
+## API Testing
+
+### File Upload Specifications
+
+### Photo Uploads
+- **Formats**: `.jpg`, `.jpeg`, `.png`, `.webp`
+- **Max Size**: 5MB per image
+- **Processing**: Automatic resizing and optimization
+- **Storage**: Supabase Storage with CDN delivery
+
+### API Endpoints Testing
+
+```bash
+# Get resume data
+curl -X GET https://your-domain.vercel.app/api/resume
+
+# Submit contact form
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"name":"John Doe","email":"john@example.com","subject":"Test","message":"Hello"}' \
+  https://your-domain.vercel.app/api/contact
+
+# Upload photo
+curl -X POST \
+  -F "photo=@image.jpg" \
+  -F "title=Sample Photo" \
+  -F "caption=A beautiful landscape" \
+  https://your-domain.vercel.app/api/photos/upload
+```
+
+## Testing
+
+### Unit Tests
+
+```javascript
+// __tests__/api.test.js
+describe('Resume API', () => {
+  test('should fetch resume data', async () => {
+    const response = await fetch('/api/resume');
+    const data = await response.json();
+    
+    expect(data.success).toBe(true);
+    expect(data.data.experience).toBeDefined();
+  });
+});
+```
+
 ## Maintenance
 
 ### Regular Tasks

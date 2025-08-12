@@ -23,7 +23,6 @@ The portfolio website follows a modern JAMstack architecture with server-side re
 ├─────────────────────────────────────────────────────────────┤
 │  Next.js API Routes                                         │
 │  ├── /api/resume (GET, POST)                               │
-│  ├── /api/resume/upload (POST)                             │
 │  ├── /api/contact (POST)                                   │
 │  └── /api/photos (GET, POST, DELETE)                       │
 └─────────────────────────────────────────────────────────────┘
@@ -33,7 +32,6 @@ The portfolio website follows a modern JAMstack architecture with server-side re
 │                       SERVICE LAYER                         │
 ├─────────────────────────────────────────────────────────────┤
 │  Business Logic Services                                    │
-│  ├── ResumeParser (Word → HTML)                            │
 │  ├── ImageProcessor (Upload & Resize)                      │
 │  ├── EmailService (Contact Form)                           │
 │  └── ValidationService (Input Sanitization)               │
@@ -183,8 +181,6 @@ CREATE INDEX idx_contact_created ON contact_submissions(created_at DESC);
 /api/
 ├── resume/
 │   ├── GET     /api/resume           # Fetch resume data
-│   ├── POST    /api/resume/upload    # Upload Word document
-│   └── PUT     /api/resume           # Update resume content
 ├── photos/
 │   ├── GET     /api/photos           # Fetch photo gallery
 │   ├── POST    /api/photos           # Upload new photo

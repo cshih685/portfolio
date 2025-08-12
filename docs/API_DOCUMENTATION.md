@@ -89,61 +89,30 @@ interface ResumeSection {
 {
   "success": true,
   "data": {
-    "sections": [
+    "personalInfo": {
+      "name": "Chieh Shih",
+      "title": "Senior Associate Full-Stack Engineer",
+      "location": "Jersey City, USA"
+    },
+    "experience": [
       {
-        "id": "1",
-        "title": "Professional Summary",
-        "content": "<p>Experienced full-stack developer...</p>",
-        "type": "summary",
-        "orderIndex": 1
+        "title": "Senior Associate Full-Stack Engineer",
+        "company": "BNY",
+        "location": "Jersey City, USA",
+        "period": "May 2023 - present",
+        "achievements": [...]
       }
     ],
-    "lastUpdated": "2024-01-15T10:30:00Z"
+    "skills": {
+      "programmingLanguages": "Java, JavaScript, TypeScript...",
+      "frameworks": "Spring Boot, Angular, React.js...",
+      "others": "Oracle SQL, PostgreSQL, MongoDB..."
+    },
+    "education": [...],
+    "lastUpdated": "2025-01-15T10:30:00Z"
   }
 }
 ```
-
-#### Upload Resume Document
-Uploads and parses a Word document to extract resume content.
-
-```http
-POST /api/resume/upload
-Content-Type: multipart/form-data
-```
-
-**Request Body:**
-```typescript
-FormData {
-  resume: File; // .doc or .docx file
-}
-```
-
-**Response:**
-```typescript
-interface UploadResponse {
-  sections: ResumeSection[];
-  content: string;
-  rawHtml: string;
-}
-```
-
-**Example Response:**
-```json
-{
-  "success": true,
-  "data": {
-    "sections": [...],
-    "content": "Full HTML content",
-    "rawHtml": "Raw parsed HTML"
-  },
-  "message": "Resume uploaded and parsed successfully"
-}
-```
-
-**Error Responses:**
-- `400` - No file provided or invalid file type
-- `413` - File too large (max 10MB)
-- `500` - Parsing error
 
 ### Photo Gallery
 

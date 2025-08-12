@@ -1,59 +1,77 @@
 import { NextResponse } from 'next/server';
 
-// Mock data - in a real app, this would come from your database
-const mockResumeData = {
-  sections: [
+// Static resume data based on Chieh Shih's actual resume
+const resumeData = {
+  personalInfo: {
+    name: 'Chieh Shih',
+    title: 'Senior Associate Full-Stack Engineer',
+    location: 'Jersey City, USA',
+    email: 'chieh.shih@example.com'
+  },
+  experience: [
     {
-      title: 'Professional Summary',
-      content: '<p>Experienced full-stack developer with 5+ years of expertise in React, Node.js, and PostgreSQL. Passionate about creating scalable web applications and leading development teams.</p>',
-      type: 'summary'
+      title: 'Senior Associate Full-Stack Engineer',
+      company: 'BNY',
+      location: 'Jersey City, USA',
+      period: 'May 2023 - present',
+      description: 'Led the end-to-end design and development of a new enterprise-wide, cross-platform Account Management system, serving over 100K users. Architected using a robust microservices approach, the system leveraged Spring Boot, Angular, Kubernetes and Docker for containerized deployment, integrating Oracle DB, PostgreSQL, MongoDB, LDAP, and Active Directory.',
+      achievements: [
+        'Reduced manual account management workload by over 85% and enhanced monitoring of all service accounts',
+        'Collaborated with Broadcom Team to design and optimize the Privileged Access Management tool (Architecture/REST APIs)',
+        'Implemented robust access controls for databases, reducing security incidents by 95% via enhanced Splunk monitoring',
+        'Mentored junior developers and led the migration of an on-premise infrastructure to a SaaS solution, improving system uptime by 99.9% and cutting infrastructure costs by 55%'
+      ]
     },
     {
-      title: 'Work Experience',
-      content: `
-        <div>
-          <h4>Senior Full Stack Developer</h4>
-          <p><strong>Tech Company Inc.</strong> | 2022 - Present</p>
-          <ul>
-            <li>Led development of microservices architecture serving 100k+ users</li>
-            <li>Implemented CI/CD pipelines reducing deployment time by 60%</li>
-            <li>Mentored junior developers and conducted code reviews</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Frontend Developer</h4>
-          <p><strong>Startup Solutions</strong> | 2020 - 2022</p>
-          <ul>
-            <li>Built responsive web applications using React and TypeScript</li>
-            <li>Collaborated with UX/UI designers to implement pixel-perfect designs</li>
-            <li>Optimized application performance achieving 95+ Lighthouse scores</li>
-          </ul>
-        </div>
-      `,
-      type: 'experience'
+      title: 'Full-Stack Engineer',
+      company: 'BNY',
+      location: 'Remote in New York, USA',
+      period: 'Apr 2021 - Apr 2023',
+      achievements: [
+        'Spearheaded the modernization of legacy services with React and Node.js, leveraging Docker for streamlined deployment',
+        'Implemented comprehensive monitoring solutions using Splunk and Grafana for real-time performance monitoring, achieving a 45% reduction in UI response time',
+        'Implemented robust authentication & authorization mechanisms, enhancing platform security and compliance with banking industry regulations',
+        'Designed and implemented intelligent, automated daily batch jobs to integrate HR system data, enabling seamless onboarding and permission provisioning for over 100,000 employees and clients across the world'
+      ]
     },
     {
-      title: 'Education',
-      content: `
-        <div>
-          <h4>Bachelor of Science in Computer Science</h4>
-          <p><strong>University of Technology</strong> | 2016 - 2020</p>
-          <p>Graduated Magna Cum Laude, GPA: 3.8/4.0</p>
-        </div>
-      `,
-      type: 'education'
+      title: 'Software Engineer',
+      company: 'ECARD Inc.',
+      location: 'New York, USA',
+      period: 'Oct 2019 - May 2020',
+      achievements: [
+        'Automated background checks by implementing the LexisNexis API within a React and Node.js-based platform, boosting the TCAD client card application rate by about 400%',
+        'Developed and enhanced partner-facing application features with RESTful APIs integrating ORM and leveraged Python for data analysis and report automation',
+        'Optimized PostgreSQL database queries and indexing to improve data retrieval efficiency and support scaled application loads'
+      ]
     },
     {
-      title: 'Technical Skills',
-      content: `
-        <div>
-          <p><strong>Frontend:</strong> React, Next.js, TypeScript, Tailwind CSS, HTML5, CSS3</p>
-          <p><strong>Backend:</strong> Node.js, Express, PostgreSQL, MongoDB, REST APIs, GraphQL</p>
-          <p><strong>Tools & Technologies:</strong> Git, Docker, AWS, Vercel, Jest, Cypress</p>
-          <p><strong>Methodologies:</strong> Agile, Scrum, Test-Driven Development</p>
-        </div>
-      `,
-      type: 'skills'
+      title: 'Research Assistant - Full Stack Web Developer',
+      company: 'BioCompLab - Kaohsiung Medical University',
+      location: 'Kaohsiung, Taiwan',
+      period: 'Oct 2017 - Apr 2019',
+      achievements: [
+        'Developed and launched SkinSensDB, an interactive database structure to study relationship (QSAR) model that predicts skin sensitization activity of chemical compounds',
+        'Optimized PostgreSQL database queries and indexing to improve data retrieval efficiency and support scaled application loads',
+        'Developed and launched SkinSensDB, implementing Python scripts for efficient backend data processing and integrating RESTful APIs to facilitate global collaboration in biological research'
+      ]
+    }
+  ],
+  skills: {
+    programmingLanguages: 'Java, JavaScript, TypeScript, Python, PHP, Go, SQL, HTML/CSS',
+    frameworks: 'Spring Boot, Spring Security, Angular, React.js, Node.js, Next.js, Jest, Mockito, Vue.js, Ploton',
+    others: 'Oracle SQL, PostgreSQL, MongoDB, Kafka, Splunk, Kubernetes, Git, GitLab, Docker, AWS, Linux, Apache, Splunk, Grafana'
+  },
+  education: [
+    {
+      degree: 'Master of Science in Computer Science',
+      institution: 'Stevens Institute of Technology, Hoboken, New Jersey',
+      year: '2019'
+    },
+    {
+      degree: 'Bachelor of Science in Telecommunications Engineering',
+      institution: 'Feng Chia University, Taichung, Taiwan',
+      year: '2014'
     }
   ],
   lastUpdated: new Date().toISOString()
@@ -61,10 +79,9 @@ const mockResumeData = {
 
 export async function GET() {
   try {
-    // In a real application, fetch from database
     return NextResponse.json({
       success: true,
-      data: mockResumeData
+      data: resumeData
     });
   } catch (error) {
     return NextResponse.json(

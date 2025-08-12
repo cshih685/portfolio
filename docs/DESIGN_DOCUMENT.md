@@ -94,8 +94,7 @@ components/
 │   └── Footer.tsx          # Site footer with links
 ├── sections/
 │   ├── About.tsx           # Personal intro + skills grid
-│   ├── Resume.tsx          # Resume display + download
-│   ├── PhotoAlbum.tsx      # Photo gallery with modal
+│   │   └── ResumeDisplay (Static Content)
 │   └── Contact.tsx         # Contact form + info
 ├── features/
 │   └── ResumeUpload.tsx    # Resume upload modal
