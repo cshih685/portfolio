@@ -80,3 +80,28 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom styles for parsed resume content */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply text-slate-800 font-semibold;
+}
+
+.prose h4 {
+  @apply text-lg mb-1;
+}
+
+.prose p {
+  @apply text-slate-600 mb-3;
+}
+
+.prose ul {
+  @apply list-disc list-inside text-slate-600 space-y-1;
+}
+
+.prose li {
+  @apply text-slate-600;
+}
+
+.prose strong {
+  @apply text-slate-800 font-semibold;
+}

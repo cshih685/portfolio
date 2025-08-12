@@ -1,11 +1,41 @@
 'use client';
 
-import { useState } from 'react';
-import { Download, Eye, FileText, Calendar, MapPin } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Download, Eye, FileText, Calendar, MapPin, Upload, RefreshCw } from 'lucide-react';
+import ResumeUpload from './ResumeUpload';
 
 const Resume = () => {
   const [isDownloading, setIsDownloading] = useState(false);
+  const [showUpload, setShowUpload] = useState(false);
+  const [resumeData, setResumeData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState<string>('');
 
+  useEffect(() => {
+    fetchResumeData();
+  }, []);
+
+  const fetchResumeData = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/resume');
+      const result = await response.json();
+      
+      if (result.success) {
+        setResumeData(result.data);
+        setLastUpdated(new Date(result.data.lastUpdated).toLocaleDateString());
+      }
+    } catch (error) {
+      console.error('Failed to fetch resume data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleUploadSuccess = (data: any) => {
+    setResumeData({ sections: data.sections, lastUpdated: new Date().toISOString() });
+    setLastUpdated(new Date().toLocaleDateString());
+  };
   const handleDownload = async () => {
     setIsDownloading(true);
     // Simulate download process
@@ -19,29 +49,20 @@ const Resume = () => {
     }, 1000);
   };
 
-  const experience = [
-    {
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Company',
-      period: '2022 - Present',
-      location: 'Remote',
-      description: 'Lead development of web applications using React, Next.js, and Node.js'
-    },
-    {
-      title: 'Frontend Developer',
-      company: 'Startup Inc',
-      period: '2020 - 2022',
-      location: 'New York, NY',
-      description: 'Built responsive web applications and improved user experience'
-    },
-    {
-      title: 'Junior Developer',
-      company: 'Digital Agency',
-      period: '2019 - 2020',
-      location: 'San Francisco, CA',
-      description: 'Developed and maintained client websites using modern web technologies'
-    }
-  ];
+  const renderSection = (section: any) => {
+    return (
+      <div key={section.title} className="mb-8">
+        <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+          <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
+          {section.title}
+        </h3>
+        <div 
+          className="prose prose-slate max-w-none"
+          dangerouslySetInnerHTML={{ __html: section.content }}
+        />
+      </div>
+    );
+  };
 
   return (
     <section id="resume" className="py-20 bg-slate-50">
@@ -51,10 +72,11 @@ const Resume = () => {
             Resume
           </h2>
           <p className="text-lg text-slate-600 mb-8">
+            {lastUpdated && `Last updated: ${lastUpdated} • `}
             Download my resume or view my experience below
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
             <button
               onClick={handleDownload}
               disabled={isDownloading}
@@ -76,75 +98,57 @@ const Resume = () => {
               <Eye size={18} />
               Preview
             </button>
+            <button
+              onClick={() => setShowUpload(true)}
+              className="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center gap-2"
+            >
+              <Upload size={18} />
+              Update Resume
+            </button>
+            <button
+              onClick={fetchResumeData}
+              disabled={loading}
+              className="text-slate-600 hover:text-slate-800 p-2 rounded-lg hover:bg-slate-100 transition-colors disabled:opacity-50"
+              title="Refresh resume data"
+            >
+              <RefreshCw size={18} className={loading ? 'animate-spin' : ''} />
+            </button>
           </div>
         </div>
+
 
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-6">
-              <FileText size={24} className="text-blue-600" />
-              <h3 className="text-2xl font-bold text-slate-800">Experience</h3>
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-600 border-t-transparent"></div>
+              <span className="ml-3 text-slate-600">Loading resume...</span>
             </div>
-            
-            <div className="space-y-6">
-              {experience.map((job, index) => (
-                <div key={index} className="border-l-4 border-blue-600 pl-6 pb-6">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                    <h4 className="text-xl font-semibold text-slate-800">{job.title}</h4>
-                    <div className="flex items-center gap-4 text-slate-600 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Calendar size={14} />
-                        {job.period}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <MapPin size={14} />
-                        {job.location}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-blue-600 font-medium mb-2">{job.company}</p>
-                  <p className="text-slate-600">{job.description}</p>
-                </div>
-              ))}
+          ) : resumeData && resumeData.sections ? (
+            <div className="space-y-8">
+              {resumeData.sections.map((section: any) => renderSection(section))}
             </div>
-          </div>
-
-          <div className="border-t pt-8">
-            <h3 className="text-2xl font-bold text-slate-800 mb-6">Skills & Technologies</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div>
-                <h4 className="font-semibold text-slate-700 mb-3">Frontend</h4>
-                <div className="flex flex-wrap gap-2">
-                  {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3'].map(skill => (
-                    <span key={skill} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-slate-700 mb-3">Backend</h4>
-                <div className="flex flex-wrap gap-2">
-                  {['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'REST APIs'].map(skill => (
-                    <span key={skill} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-slate-700 mb-3">Tools</h4>
-                <div className="flex flex-wrap gap-2">
-                  {['Git', 'Docker', 'AWS', 'Vercel', 'Figma', 'VS Code'].map(skill => (
-                    <span key={skill} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
+          ) : (
+            <div className="text-center py-12">
+              <FileText size={48} className="mx-auto text-slate-400 mb-4" />
+              <h3 className="text-xl font-semibold text-slate-800 mb-2">No Resume Data</h3>
+              <p className="text-slate-600 mb-6">Upload your Word document to get started</p>
+              <button
+                onClick={() => setShowUpload(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2 mx-auto"
+              >
+                <Upload size={18} />
+                Upload Resume
+              </button>
             </div>
-          </div>
+          )}
         </div>
+
+        {showUpload && (
+          <ResumeUpload
+            onUploadSuccess={handleUploadSuccess}
+            onClose={() => setShowUpload(false)}
+          />
+        )}
       </div>
     </section>
   );
