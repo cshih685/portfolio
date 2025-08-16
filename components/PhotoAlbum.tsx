@@ -6,7 +6,7 @@ import { X, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 const PhotoAlbum = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
 
-  // Using Pexels stock photos for demo
+  // 6 photos from my life
   const photos = [
     {
       id: 1,
@@ -29,7 +29,7 @@ const PhotoAlbum = () => {
     },
     {
       id: 4,
-      src: '/images/London_Coffee.jpg',
+      src: '/images/London_Coffee.JPG',
       alt: 'The Gentlemen Baristas - A special coffee shop on Park St',
       caption: 'The Gentlemen Baristas, London - 2022'
     },
