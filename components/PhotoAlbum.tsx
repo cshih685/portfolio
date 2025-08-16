@@ -17,7 +17,7 @@ const PhotoAlbum = () => {
     },
     {
       id: 2,
-      src: '/images/Lovely_Wife.jpg',
+      src: '/images/Lovely_Wife.JPG',
       alt: 'Schwerin Castle - A day trip to Schwerin after our wedding',
       caption: 'Schwerin Castle with My Wife - 2025'
     },
