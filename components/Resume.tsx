@@ -60,10 +60,8 @@ const Resume = () => {
                     <span className="text-slate-600 text-sm">May 2023 - present</span>
                   </div>
                   <p className="text-blue-600 font-medium mb-2">BNY • Jersey City, USA</p>
-                  <p className="text-slate-600 mb-3">
-                    Led the end-to-end design and development of a new enterprise-wide, cross-platform Account Management system, serving over 100K users. Architected using a robust microservices approach, the system leveraged Spring Boot, Angular, Kubernetes and Docker for containerized deployment, integrating Oracle DB, PostgreSQL, MongoDB, LDAP, and Active Directory.
-                  </p>
                   <ul className="list-disc list-inside text-slate-600 space-y-1">
+                    <li>Led the end-to-end design and development of a new enterprise-wide, cross-platform Account Management system, serving over 100K users. Architected using a robust microservices approach, the system leveraged Spring Boot, Angular, Kubernetes and Docker for containerized deployment, integrating Oracle DB, PostgreSQL, MongoDB, LDAP, and Active Directory.</li>
                     <li>Reduced manual account management workload by over 85% and enhanced monitoring of all service accounts</li>
                     <li>Collaborated with Broadcom Team to design and optimize the Privileged Access Management tool (Architecture/REST APIs)</li>
                     <li>Implemented robust access controls for databases, reducing security incidents by 95% via enhanced Splunk monitoring</li>
