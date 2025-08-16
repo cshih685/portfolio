@@ -1,47 +1,18 @@
 'use client';
 
-import { useState } from 'react';
-import { Download, Eye, FileText, Calendar, MapPin } from 'lucide-react';
+import { Download, Eye, FileText } from 'lucide-react';
 
 const Resume = () => {
-  const [isDownloading, setIsDownloading] = useState(false);
-
-  const handleDownload = async () => {
-    setIsDownloading(true);
-    // Simulate download process
-    setTimeout(() => {
-      // In a real app, this would trigger the actual download
-      const link = document.createElement('a');
-      link.href = '/resume.pdf'; // You'll need to add your resume file to the public folder
-      link.download = 'YourName_Resume.pdf';
-      link.click();
-      setIsDownloading(false);
-    }, 1000);
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/resumes/Resume_Chieh_Shih.pdf';
+    link.download = 'Chieh_Shih_Resume.pdf';
+    link.click();
   };
 
-  const experience = [
-    {
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Company',
-      period: '2022 - Present',
-      location: 'Remote',
-      description: 'Lead development of web applications using React, Next.js, and Node.js'
-    },
-    {
-      title: 'Frontend Developer',
-      company: 'Startup Inc',
-      period: '2020 - 2022',
-      location: 'New York, NY',
-      description: 'Built responsive web applications and improved user experience'
-    },
-    {
-      title: 'Junior Developer',
-      company: 'Digital Agency',
-      period: '2019 - 2020',
-      location: 'San Francisco, CA',
-      description: 'Developed and maintained client websites using modern web technologies'
-    }
-  ];
+  const handlePreview = () => {
+    window.open('/resumes/Resume_Chieh_Shih.pdf', '_blank');
+  };
 
   return (
     <section id="resume" className="py-20 bg-slate-50">
@@ -51,95 +22,143 @@ const Resume = () => {
             Resume
           </h2>
           <p className="text-lg text-slate-600 mb-8">
-            Download my resume or view my experience below
+            Download my resume or view my professional experience below
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <button
               onClick={handleDownload}
-              disabled={isDownloading}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 disabled:opacity-50"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2"
             >
-              {isDownloading ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                  Downloading...
-                </>
-              ) : (
-                <>
-                  <Download size={18} />
-                  Download Resume
-                </>
-              )}
+              <Download size={18} />
+              Download Resume
             </button>
-            <button className="border border-slate-300 text-slate-700 hover:bg-slate-100 px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center gap-2">
+            <button 
+              onClick={handlePreview}
+              className="border border-slate-300 text-slate-700 hover:bg-slate-100 px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center gap-2"
+            >
               <Eye size={18} />
-              Preview
+              Preview PDF
             </button>
           </div>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-6">
-              <FileText size={24} className="text-blue-600" />
-              <h3 className="text-2xl font-bold text-slate-800">Experience</h3>
-            </div>
-            
-            <div className="space-y-6">
-              {experience.map((job, index) => (
-                <div key={index} className="border-l-4 border-blue-600 pl-6 pb-6">
+          <div className="space-y-8">
+            {/* Professional Experience */}
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
+                Professional Experience
+              </h3>
+              
+              <div className="space-y-6">
+                {/* BNY */}
+                <div className="border-l-2 border-blue-200 pl-6">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                    <h4 className="text-xl font-semibold text-slate-800">{job.title}</h4>
-                    <div className="flex items-center gap-4 text-slate-600 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Calendar size={14} />
-                        {job.period}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <MapPin size={14} />
-                        {job.location}
-                      </div>
-                    </div>
+                    <h4 className="text-lg font-semibold text-slate-800">Senior Associate Full-Stack Engineer</h4>
+                    <span className="text-slate-600 text-sm">May 2023 - present</span>
                   </div>
-                  <p className="text-blue-600 font-medium mb-2">{job.company}</p>
-                  <p className="text-slate-600">{job.description}</p>
+                  <p className="text-blue-600 font-medium mb-2">BNY • Jersey City, USA</p>
+                  <p className="text-slate-600 mb-3">
+                    Led the end-to-end design and development of a new enterprise-wide, cross-platform Account Management system, serving over 100K users. Architected using a robust microservices approach, the system leveraged Spring Boot, Angular, Kubernetes and Docker for containerized deployment, integrating Oracle DB, PostgreSQL, MongoDB, LDAP, and Active Directory.
+                  </p>
+                  <ul className="list-disc list-inside text-slate-600 space-y-1">
+                    <li>Reduced manual account management workload by over 85% and enhanced monitoring of all service accounts</li>
+                    <li>Collaborated with Broadcom Team to design and optimize the Privileged Access Management tool (Architecture/REST APIs)</li>
+                    <li>Implemented robust access controls for databases, reducing security incidents by 95% via enhanced Splunk monitoring</li>
+                    <li>Mentored junior developers and led the migration of an on-premise infrastructure to a SaaS solution, improving system uptime by 99.9% and cutting infrastructure costs by 55%</li>
+                  </ul>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="border-t pt-8">
-            <h3 className="text-2xl font-bold text-slate-800 mb-6">Skills & Technologies</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div>
-                <h4 className="font-semibold text-slate-700 mb-3">Frontend</h4>
-                <div className="flex flex-wrap gap-2">
-                  {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML5', 'CSS3'].map(skill => (
-                    <span key={skill} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                      {skill}
-                    </span>
-                  ))}
+                {/* BNY - Full Stack Engineer */}
+                <div className="border-l-2 border-blue-200 pl-6">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                    <h4 className="text-lg font-semibold text-slate-800">Full-Stack Engineer</h4>
+                    <span className="text-slate-600 text-sm">Apr 2021 - Apr 2023</span>
+                  </div>
+                  <p className="text-blue-600 font-medium mb-2">BNY • Remote in New York, USA</p>
+                  <ul className="list-disc list-inside text-slate-600 space-y-1">
+                    <li>Spearheaded the modernization of legacy services with React and Node.js, leveraging Docker for streamlined deployment</li>
+                    <li>Implemented comprehensive monitoring solutions using Splunk and Grafana for real-time performance monitoring, achieving a 45% reduction in UI response time</li>
+                    <li>Implemented robust authentication & authorization mechanisms, enhancing platform security and compliance with banking industry regulations</li>
+                    <li>Designed and implemented intelligent, automated daily batch jobs to integrate HR system data, enabling seamless onboarding and permission provisioning for over 100,000 employees and clients across the world</li>
+                  </ul>
+                </div>
+
+                {/* ECARD Inc. */}
+                <div className="border-l-2 border-blue-200 pl-6">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                    <h4 className="text-lg font-semibold text-slate-800">Software Engineer</h4>
+                    <span className="text-slate-600 text-sm">Oct 2019 - May 2020</span>
+                  </div>
+                  <p className="text-blue-600 font-medium mb-2">ECARD Inc. • New York, USA</p>
+                  <ul className="list-disc list-inside text-slate-600 space-y-1">
+                    <li>Automated background checks by implementing the LexisNexis API within a React and Node.js-based platform, boosting the TCAD client card application rate by about 400%</li>
+                    <li>Developed and enhanced partner-facing application features with RESTful APIs integrating ORM and leveraged Python for data analysis and report automation</li>
+                    <li>Optimized PostgreSQL database queries and indexing to improve data retrieval efficiency and support scaled application loads</li>
+                  </ul>
+                </div>
+
+                {/* BioCompLab */}
+                <div className="border-l-2 border-blue-200 pl-6">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                    <h4 className="text-lg font-semibold text-slate-800">Research Assistant - Full Stack Web Developer</h4>
+                    <span className="text-slate-600 text-sm">Oct 2017 - Apr 2019</span>
+                  </div>
+                  <p className="text-blue-600 font-medium mb-2">BioCompLab - Kaohsiung Medical University • Kaohsiung, Taiwan</p>
+                  <ul className="list-disc list-inside text-slate-600 space-y-1">
+                    <li>Developed and launched SkinSensDB, an interactive database structure to study relationship (QSAR) model that predicts skin sensitization activity of chemical compounds</li>
+                    <li>Optimized PostgreSQL database queries and indexing to improve data retrieval efficiency and support scaled application loads</li>
+                    <li>Developed and launched SkinSensDB, implementing Python scripts for efficient backend data processing and integrating RESTful APIs to facilitate global collaboration in biological research</li>
+                  </ul>
                 </div>
               </div>
-              <div>
-                <h4 className="font-semibold text-slate-700 mb-3">Backend</h4>
-                <div className="flex flex-wrap gap-2">
-                  {['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'REST APIs'].map(skill => (
-                    <span key={skill} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                      {skill}
-                    </span>
-                  ))}
+            </div>
+
+            {/* Skills */}
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
+                Skills
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold text-slate-800 mb-2">Programming Languages</h4>
+                  <p className="text-slate-600">Java, JavaScript, TypeScript, Python, PHP, Go, SQL, HTML/CSS</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-800 mb-2">Frameworks</h4>
+                  <p className="text-slate-600">Spring Boot, Spring Security, Angular, React.js, Node.js, Next.js, Jest, Mockito, Vue.js, Ploton</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-800 mb-2">Others</h4>
+                  <p className="text-slate-600">Oracle SQL, PostgreSQL, MongoDB, Kafka, Splunk, Kubernetes, Git, GitLab, Docker, AWS, Linux, Apache, Splunk, Grafana</p>
                 </div>
               </div>
-              <div>
-                <h4 className="font-semibold text-slate-700 mb-3">Tools</h4>
-                <div className="flex flex-wrap gap-2">
-                  {['Git', 'Docker', 'AWS', 'Vercel', 'Figma', 'VS Code'].map(skill => (
-                    <span key={skill} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                      {skill}
-                    </span>
-                  ))}
+            </div>
+
+            {/* Education */}
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
+                Education
+              </h3>
+              <div className="space-y-4">
+                <div className="border-l-2 border-blue-200 pl-6">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                    <h4 className="text-lg font-semibold text-slate-800">Master of Science in Computer Science</h4>
+                    <span className="text-slate-600 text-sm">2019</span>
+                  </div>
+                  <p className="text-blue-600 font-medium">Stevens Institute of Technology, Hoboken, New Jersey</p>
+                </div>
+                
+                <div className="border-l-2 border-blue-200 pl-6">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                    <h4 className="text-lg font-semibold text-slate-800">Bachelor of Science in Telecommunications Engineering</h4>
+                    <span className="text-slate-600 text-sm">2014</span>
+                  </div>
+                  <p className="text-blue-600 font-medium">Feng Chia University, Taichung, Taiwan</p>
                 </div>
               </div>
             </div>

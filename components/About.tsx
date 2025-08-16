@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Code, Database, Server, Smartphone } from 'lucide-react';
+import { AppWindowMac, Code, Database, Server, Smartphone } from 'lucide-react';
 
 const About = () => {
   const [introduction, setIntroduction] = useState('');
@@ -10,7 +10,7 @@ const About = () => {
   useEffect(() => {
     // This would fetch from your database
     setIntroduction(
-      "I'm a passionate full-stack developer with expertise in modern web technologies. I love creating seamless user experiences and robust backend systems. When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or capturing moments through photography."
+      "I'm a passionate full-stack developer with expertise in modern web technologies. I love creating seamless user experiences and robust backend systems. When I'm not coding, you'll find me exploring new technologies, traveling the world with my family, or capturing moments through photography."
     );
 
     const observer = new IntersectionObserver(
@@ -30,27 +30,27 @@ const About = () => {
 
   const skills = [
     {
-      icon: Code,
+      icon: AppWindowMac,
       title: 'Frontend Development',
-      description: 'React, Next.js, TypeScript, Tailwind CSS',
+      description: 'React, Next.js, Angular, Vue.js, Tailwind CSS',
       color: 'from-blue-500 to-cyan-500'
     },
     {
       icon: Server,
       title: 'Backend Development',
-      description: 'Node.js, Express, API Design, Microservices',
+      description: 'SpringBoot, Node.js, Express, API Design, Microservices',
       color: 'from-green-500 to-emerald-500'
     },
     {
       icon: Database,
       title: 'Database Management',
-      description: 'PostgreSQL, Supabase, MongoDB, Redis',
+      description: 'PostgreSQL, Oracle SQL, MongoDB, Redis',
       color: 'from-purple-500 to-pink-500'
     },
     {
-      icon: Smartphone,
-      title: 'Mobile Development',
-      description: 'React Native, Progressive Web Apps',
+      icon: Code,
+      title: 'Programming Languages',
+      description: 'Java, JavaScript, TypeScript, Python, Go, SQL, HTML, CSS',
       color: 'from-orange-500 to-red-500'
     },
   ];

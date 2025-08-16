@@ -26,7 +26,7 @@ const Hero = () => {
             <h1 className="text-5xl md:text-7xl font-bold text-slate-800 leading-tight">
               Hi, I'm{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                Your Name
+                Chieh Shih
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
@@ -43,7 +43,7 @@ const Hero = () => {
             </button>
             <div className="flex items-center gap-4">
               <a 
-                href="https://github.com" 
+                href="https://github.com/cshih685" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
@@ -51,7 +51,7 @@ const Hero = () => {
                 <Github size={20} className="text-slate-700" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/chiehshih" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
@@ -59,7 +59,7 @@ const Hero = () => {
                 <Linkedin size={20} className="text-blue-600" />
               </a>
               <a 
-                href="mailto:your.email@example.com"
+                href="mailto:chieh.cshih@gmail.com"
                 className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
               >
                 <Mail size={20} className="text-green-600" />

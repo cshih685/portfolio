@@ -10,39 +10,41 @@ const PhotoAlbum = () => {
   const photos = [
     {
       id: 1,
-      src: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Travel Adventure',
-      caption: 'Mountain hiking in Colorado'
+      src: '/images/MySelf.JPG',
+      alt: 'Photo taken by my wife in New York',
+      caption: 'New York Subway - 2024'
+      
     },
     {
       id: 2,
-      src: 'https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Coffee Time',
-      caption: 'Morning coffee and coding session'
+      src: '/images/Lovely_Wife.jpg',
+      alt: 'Schwerin Castle - A day trip to Schwerin after our wedding',
+      caption: 'Schwerin Castle with My Wife - 2025'
     },
     {
       id: 3,
-      src: 'https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Beach Sunset',
-      caption: 'Sunset at the beach'
+      src: '/images/Dance_Paris.JPG',
+      alt: 'Dance in Paris',
+      caption: 'Domaine National du Palais-Royal, Paris - 2024'
     },
     {
       id: 4,
-      src: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'City Life',
-      caption: 'Urban exploration'
+      src: '/images/London_Coffee.jpg',
+      alt: 'The Gentlemen Baristas - A special coffee shop on Park St',
+      caption: 'The Gentlemen Baristas, London - 2022'
     },
     {
       id: 5,
-      src: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Nature Walk',
-      caption: 'Forest trail discovery'
+      src: '/images/NewYork_skyline.JPG',
+      alt: 'New York Skyline took from SUMMIT One Vanderbilt',
+      caption: 'New York Skyline - 2023'
+      
     },
     {
       id: 6,
-      src: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800',
-      alt: 'Food Adventure',
-      caption: 'Trying local cuisine'
+      src: '/images/Stockholm.JPG',
+      alt: 'Travel in Nordic, Stockholm City View',
+      caption: 'Stockholm City View - 2023'
     }
   ];
 
@@ -73,7 +75,7 @@ const PhotoAlbum = () => {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Camera size={32} className="text-blue-600" />
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800">
-              Life Photos
+              Photos
             </h2>
           </div>
           <p className="text-lg text-slate-600">
