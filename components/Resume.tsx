@@ -102,7 +102,7 @@ const Resume = () => {
                 <div className="border-l-2 border-blue-200 pl-6">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
                     <h4 className="text-lg font-semibold text-slate-800">Research Assistant - Full Stack Web Developer</h4>
-                    <span className="text-slate-600 text-sm">Oct 2017 - Apr 2019</span>
+                    <span className="text-slate-600 text-sm">Oct 2015 - Mar 2017</span>
                   </div>
                   <p className="text-blue-600 font-medium mb-2">BioCompLab - Kaohsiung Medical University • Kaohsiung, Taiwan</p>
                   <ul className="list-disc list-inside text-slate-600 space-y-1">
